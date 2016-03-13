@@ -1,0 +1,41 @@
+mt6735
+
+export CROSS_COMPILE=/home/olegsvs/Documents/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+export ARCH=arm64 export ARCH_MTK_PLATFORM=mt6735m 
+make clean
+make wdf6735m_65u_a_l_defconfig
+./build.sh
+
+
+
+ATTRS{idVendor}=="0e8d", ATTRS{idProduct}=="2000", ENV{ID_MM_DEVICE_IGNORE}="1"
+make k01ts_a_defconfig
+write /sys/class/misc/mtgpio/pin "-w=43: 0 0 1 0 1 1 0"
+~ # cat /proc/last_kmsg
+ram console header, hw_status: 0, fiq step 0.
+header may be corrupted, dump the raw buffer for reference only
+ # echo "-w=43: 0 0 1 1 0 0 0" > /sys/class/misc/mtgpio/pin
+ALPS.L1.MP3.V1_LENTEK6735M.65U.L 
+
+mt6577
+export CROSS_COMPILE=/home/olegsvs/Documents/Android/untitledolder/arm-eabi-4.8/bin/arm-eabi-
+./mk a800_kitkat r k
+
+
+mt6582
+
+export CROSS_COMPILE=/media/olegsvs/15b9b3af-f61e-aaa8-0eea-6f2ba0c31286/6577-kk/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.7/bin/arm-linux-androideabi-
+export ARCH=arm export ARCH_MTK_PLATFORM=mt6582 
+./mk bird82_tb_td_a_kk r k
+
+
+TARGET_PROJECT=bird82_tb_td_a_kk TARGET_PRODUCT=bird82_tb_td_a_kk make mrproper
+
+
+
+cd kernel
+export ARCH=arm
+export TARGET_PRODUCT=my90ds_global_com
+export CROSS_COMPILE=/media/olegsvs/15b9b3af-f61e-aaa8-0eea-6f2ba0c31286/6577-kk/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.7/bin/arm-linux-androideabi-
+make my90ds_global_com_defconfig
+make zImage
